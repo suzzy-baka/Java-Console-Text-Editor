@@ -126,7 +126,7 @@ public class Main
             }  // End of while loop
           
             str = str.substring(0, Math.min(index_1, index_2)) + str.substring(Math.max(index_1, index_2), str.length());
-            System.out.println("\nUpdated Text:\n" + str+ str);
+            System.out.println("\nUpdated Text:\n" + str + str);
 
           }  // End of else statement
 
