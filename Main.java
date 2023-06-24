@@ -17,7 +17,7 @@ public class Main
     char i;
 
     while (true)
-      
+
     {  // Start of while loop
 
       // Operation Prompt
@@ -29,6 +29,7 @@ public class Main
       System.out.println("(c) Cut Text");
       System.out.println("(d) Paste Text");
       System.out.println("(e) Delete Text");
+      System.out.println("(x) Exit");
 
       System.out.print("\nEnter the operation letter: ");
 
@@ -160,7 +161,7 @@ public class Main
           str = str.substring(0, Math.min(paste_1, paste_2)) + str.substring(index_1, index_2) + str.substring(Math.max(paste_1, paste_2), str.length());
           System.out.println("\nUpdated Text\n" + str);
 
-        break;
+          break;
 
         // To Delete Text
 
@@ -182,26 +183,31 @@ public class Main
             {  // Start of while loop
             
               if(del_1 >= str.length() || del_2 >= str.length() || del_1 < 0 || del_2 < 0)
-              
+
               {  // Start of if statement
-              
+
                 System.out.println("INVALID Index! Retry!\n");
                 del_1 = sc.nextInt();
                 del_2 = sc.nextInt();
-              
+
               }  // End of if statement
-              
+
               else
                 break;
-            
+
             }  // End of while loop
-          
+
             str = str.substring(0, Math.min(del_1, del_2)) + str.substring(Math.max(del_1, del_2), str.length());
             System.out.println("\nUpdated Text:\n" + str);
 
           }  // End of else statement
-          
+
           break;
+
+        // To exit the program
+
+        case 'x':
+          System.exit(0);
 
         // For Invalid Input
 
