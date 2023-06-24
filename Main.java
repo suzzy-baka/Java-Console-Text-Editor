@@ -13,7 +13,8 @@ public class Main
     // Variables Used
 
     String str = "";
-    int i, index_1 = 0, index_2 = 0, del_1, del_2, paste_1, paste_2;
+    int index_1 = 0, index_2 = 0, del_1, del_2, paste_1, paste_2;
+    char i;
 
     while (true)
       
@@ -23,17 +24,17 @@ public class Main
 
       System.out.println("\nThe number for the operation:\n");
 
-      System.out.println("1. Text Typing");
-      System.out.println("2. Copy Text");
-      System.out.println("3. Cut Text");
-      System.out.println("4. Paste Text");
-      System.out.println("5. Delete Text");
+      System.out.println("(a) Text Typing");
+      System.out.println("(b) Copy Text");
+      System.out.println("(c) Cut Text");
+      System.out.println("(d) Paste Text");
+      System.out.println("(e) Delete Text");
 
-      System.out.print("\nEnter the operation number: ");
+      System.out.print("\nEnter the operation letter: ");
 
       // Take The Operation Number
 
-      i = sc.nextInt();
+      i = sc.next().charAt(0);
       System.out.println();
 
       // Check What Operation The User Wants
@@ -44,7 +45,7 @@ public class Main
 
         // For Text Typing
 
-        case 1:
+        case 'a':
           System.out.println("Enter the text below:\n");
           System.out.print(str);
           sc.nextLine();
@@ -53,7 +54,7 @@ public class Main
 
         // For Copying Text
 
-        case 2:
+        case 'b':
           if(str.length() == 0)
               System.out.println("No Text is present\n");
 
@@ -91,7 +92,7 @@ public class Main
 
         // To Cut Text
 
-        case 3:
+        case 'c':
           if(str.length() == 0)
               System.out.println("No Text is present\n");
 
@@ -132,7 +133,7 @@ public class Main
 
         // To Paste Text
 
-        case 4:
+        case 'd':
           System.out.println("Enter the first and last index of the portion, where you want to paste:\n");
           sc.nextLine();
           paste_1 = sc.nextInt();
@@ -163,7 +164,7 @@ public class Main
 
         // To Delete Text
 
-        case 5:
+        case 'e':
           if(str.length() == 0)
               System.out.println("No Text is present\n");
 
@@ -171,7 +172,7 @@ public class Main
             
           {  // Start of else statement
 
-            Syste.out.println(str + "\n");
+            System.out.println(str + "\n");
             System.out.println("Enter the first and last index of the portion, to be deleted:\n");
             sc.nextLine();
             del_1 = sc.nextInt();
