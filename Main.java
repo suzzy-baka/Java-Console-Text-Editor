@@ -1,19 +1,19 @@
 import java.util.Scanner;  // To import Scanner class from util package
 
 public class Main
-  
+
 {  // Start of class
-  
+
   public static void main(String[] args)
-  
+
   {  //Start of main() method
-    
+
     Scanner sc = new Scanner(System.in);
 
     // Variables Used
 
-    String str = "";
-    int index_1 = 0, index_2 = 0, del_1, del_2, paste_1, paste_2;
+    String str = "", clip = "";
+    int index_1 = 0, index_2 = 0, del_1, del_2, paste = 0;
     char i;
 
     while (true)
@@ -22,7 +22,7 @@ public class Main
 
       // Operation Prompt
 
-      System.out.println("\nThe number for the operation:\n");
+      System.out.println("\nThe letter for the operation:\n");
 
       System.out.println("(a) Text Typing");
       System.out.println("(b) Copy Text");
@@ -41,7 +41,7 @@ public class Main
       // Check What Operation The User Wants
 
       switch (i)
-        
+
       {  // Start of switch statement
 
         // For Text Typing
@@ -68,27 +68,21 @@ public class Main
             sc.nextLine();
             index_1 = sc.nextInt();
             index_2 = sc.nextInt();
-            while(true)
             
+            while(index_1 >= str.length() || index_2 >= str.length() || index_1 < 0 || index_2 < 0)
+
             {  // Start of while loop
-            
-              if(index_1 >= str.length() || index_2 >= str.length() || index_1 < 0 || index_2 < 0)
-              
-              {  // Start of if statement
               
                 System.out.println("INVALID Index! Retry!\n");
                 index_1 = sc.nextInt();
                 index_2 = sc.nextInt();
               
-              }  // End of if statement
-              
-              else
-                break;
-            
             }  // End of while loop
 
+            clip = str.substring(Math.min(index_1, index_2), Math.max(index_1, index_2));
+              
           }  // End of else statement
-          
+
           break;
 
         // To Cut Text
@@ -102,31 +96,24 @@ public class Main
           {  // Start of else statement
 
             System.out.println(str + "\n");
-            System.out.println("Enter the first and last index of the potion u want to cut:\n");
-            sc.nextLine();
+            System.out.print("Enter the first index of the portion u want to cut: ");
             index_1 = sc.nextInt();
+            System.out.print("Enter the last index of the portion u want to cut: ");
             index_2 = sc.nextInt();
-            while(true)
-            
+
+            while(index_1 >= str.length() || index_2 >= str.length() || index_1 < 0 || index_2 < 0)
+
             {  // Start of while loop
 
-              if(index_1 >= str.length() || index_2 >= str.length() || index_1 < 0 || index_2 < 0)
-              
-              {  // Start of if statement
-              
-                System.out.println("INVALID Index! Retry!\n");
-                index_1 = sc.nextInt();
-                index_2 = sc.nextInt();
-              
-              }  // End of if statement
-              
-              else
-                break;
+              System.out.println("INVALID Index! Retry!\n");
+              index_1 = sc.nextInt();
+              index_2 = sc.nextInt();
 
             }  // End of while loop
-          
+
+            clip = str.substring(Math.min(index_1, index_2), Math.max(index_1, index_2));
             str = str.substring(0, Math.min(index_1, index_2)) + str.substring(Math.max(index_1, index_2), str.length());
-            System.out.println("\nUpdated Text:\n" + str + str);
+            System.out.println("\nUpdated Text:\n" + str);
 
           }  // End of else statement
 
@@ -135,31 +122,41 @@ public class Main
         // To Paste Text
 
         case 'd':
-          System.out.println("Enter the first and last index of the portion, where you want to paste:\n");
-          sc.nextLine();
-          paste_1 = sc.nextInt();
-          paste_2 = sc.nextInt();
-          while(true)
+          if(str.length() == 0)
+              System.out.println("No Text is present\n");
+          else
 
-          {  // Start of while loop
+          {  // Start of else statement
 
-            if(paste_1 >= str.length() || paste_2 >= str.length() || paste_1 < 0 || paste_2 < 0)
-              
+            if(clip == "")
+
             {  // Start of if statement
-              
-              System.out.println("INVALID Index! Retry!\n");
-              paste_1 = sc.nextInt();
-              paste_2 = sc.nextInt();
-              
-            }  // End of if statement
-              
-            else
-              break;
 
-          }  //End of while loop
-          
-          str = str.substring(0, Math.min(paste_1, paste_2)) + str.substring(index_1, index_2) + str.substring(Math.max(paste_1, paste_2), str.length());
-          System.out.println("\nUpdated Text\n" + str);
+              System.out.println("Clipboard is empty!");
+
+            }  // End of if statement
+
+            else
+
+            {  // Start of else statement
+
+              System.out.print("Enter the index of the character, before which you want to paste: ");
+              paste = sc.nextInt();
+              while(paste >= str.length() || paste < 0)
+
+              {  // Start of while loop
+
+                System.out.println("INVALID Index! Retry!\n");
+                paste = sc.nextInt();
+
+              }  //End of while loop
+
+              str = str.substring(0, paste) + clip + str.substring(paste, str.length());
+              System.out.println("\nUpdated Text\n" + str);
+
+            }  // End of else statement
+
+          }  // End of else statement
 
           break;
 
@@ -170,7 +167,7 @@ public class Main
               System.out.println("No Text is present\n");
 
           else
-            
+
           {  // Start of else statement
 
             System.out.println(str + "\n");
@@ -178,22 +175,13 @@ public class Main
             sc.nextLine();
             del_1 = sc.nextInt();
             del_2 = sc.nextInt();
-            while(true)
-            
-            {  // Start of while loop
-            
-              if(del_1 >= str.length() || del_2 >= str.length() || del_1 < 0 || del_2 < 0)
+            while(del_1 >= str.length() || del_2 >= str.length() || del_1 < 0 || del_2 < 0)
 
-              {  // Start of if statement
+            {  // Start of while loop
 
                 System.out.println("INVALID Index! Retry!\n");
                 del_1 = sc.nextInt();
                 del_2 = sc.nextInt();
-
-              }  // End of if statement
-
-              else
-                break;
 
             }  // End of while loop
 
@@ -213,11 +201,11 @@ public class Main
 
         default:
           System.out.println("Invalid Input. Retry\n");
-          
+
       }  // End of switch statement
-      
+
     }  // End of while loop
-    
+
   }  // End of main() method
-  
+
 }  // End of class
